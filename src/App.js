@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import Result from './components/Result/Result';
+import Results from './components/Results/Results';
+import Search from './components/Search/Search';
 
 function App() {
+  const [showMap, setShowMap] = useState(false)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className='Main'>
+        <div className='main_container'>
+          <Search />
+          <button className='map_btn' onClick={() => setShowMap(!showMap)}>show map</button>
+          {
+            !showMap ? (
+              <div className='results_'>
+                <Results />
+              </div>
+            ): (
+                <div className='showMap_container'>
+                  <div className='left_side'>
+                    <Results />
+                  </div>
+                
+                  <div className='right_side'>
+                    
+                  </div>
+                </div>
+            )
+          }
+          
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }
